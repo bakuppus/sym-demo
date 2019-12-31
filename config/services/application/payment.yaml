@@ -1,0 +1,23 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  _instanceof:
+    App\Application\Service\Payment\Strategy\ChargeResponse\ChargeResponseStrategyInterface:
+      tags:
+        - { name: 'app.service.payment.charge_status_strategy' }
+    App\Application\Service\Payment\Strategy\UpdatePaymentMethod\UpdatePaymentMethodStrategyInterface:
+      tags:
+        - { name: 'app.service.payment.update_payment_method_strategy' }
+
+  App\Application\Service\Payment\:
+    resource: '../../../src/Application/Service/Payment/*'
+
+  App\Application\Service\Payment\Strategy\ChargeResponse\ChargeResponseContext:
+    arguments:
+      - !tagged app.service.payment.charge_status_strategy
+
+  App\Application\Service\Payment\Strategy\UpdatePaymentMethod\UpdatePaymentMethodContext:
+    arguments:
+      - !tagged app.service.payment.update_payment_method_strategy

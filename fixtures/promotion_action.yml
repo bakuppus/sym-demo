@@ -1,0 +1,16 @@
+App\Domain\Promotion\PromotionAction:
+  booking_discount_percentage_promotion_to_delete:
+    type: greenfee_guest_percentage_discount
+    configuration:
+      percentage_coefficient: '<randomFloat(1 0.1 1)>'
+    promotion: '@promotion_to_delete'
+  greenfee_guest_percentage_discount_{1..50}:
+    type: greenfee_guest_percentage_discount
+    configuration:
+      percentage_coefficient: '<randomFloat(1 0.1 1)>'
+    promotion: '@promotion_<($current)>'
+  greenfee_member_percentage_discount_{1..50}:
+    type: greenfee_member_percentage_discount
+    configuration:
+      percentage_coefficient: '<randomFloat(1 0.1 1)>'
+    promotion: '@promotion_<($current)>'

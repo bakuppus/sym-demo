@@ -1,0 +1,15 @@
+App\Domain\Payment\Payment:
+  payment_{1..50}:
+    payment_method: '@payment_method_1'
+    currency_code: <currencyCode()>
+    amount: <randomNumber(5)>
+    state: <randomElement(['new', 'completed', 'failed', 'refunded', 'canceled'])>
+    details: []
+    order: '@order_<current()>'
+  payment_51:
+    payment_method: '@payment_method_1'
+    currency_code: '@order_membership_1->currencyCode'
+    amount: '@order_membership_1->total'
+    state: 'new'
+    details: []
+    order: '@order_membership_1'

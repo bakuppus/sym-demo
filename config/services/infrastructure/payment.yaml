@@ -1,0 +1,22 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  _instanceof:
+    App\Infrastructure\Payment\Strategy\ChargeRequestOptions\ChargeRequestOptionsStrategyInterface:
+      tags:
+        - { name: 'app.infrastructure.payment.charge_request_options_strategy' }
+    App\Infrastructure\Payment\Strategy\RefundRequestOptions\RefundRequestOptionsStrategyInterface:
+      tags:
+        - { name: 'app.infrastructure.payment.refund_request_options_strategy' }
+
+  App\Infrastructure\Payment\Strategy\:
+    resource: '../../../src/Infrastructure/Payment/Strategy/*'
+
+  App\Infrastructure\Payment\Strategy\ChargeRequestOptions\ChargeRequestOptionsContext:
+    arguments:
+      - !tagged app.infrastructure.payment.charge_request_options_strategy
+  App\Infrastructure\Payment\Strategy\RefundRequestOptions\RefundRequestOptionsContext:
+    arguments:
+      - !tagged app.infrastructure.payment.refund_request_options_strategy

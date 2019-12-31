@@ -1,0 +1,5 @@
+App\Domain\Membership\PlayerMembershipToAssign:
+  player-membership-to-assign_{1..100}:
+    player: '@player_*'
+    golf_club: '@club_*'
+    membership_name: '<bs()>'

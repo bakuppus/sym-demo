@@ -1,0 +1,9 @@
+App\Domain\Promotion\PromotionRule:
+  days_in_week_checker_promotion_to_delete:
+    type: days_in_week_checker
+    configuration: [<randomElement(<(App\Infrastructure\Promotion\Rule\DaysInWeekRuleChecker::getDayNames())>)>]
+    promotion: '@promotion_to_delete'
+  days_in_week_checker_{1..50}:
+    type: days_in_week_checker
+    configuration: [<randomElement(<(App\Infrastructure\Promotion\Rule\DaysInWeekRuleChecker::getDayNames())>)>]
+    promotion: '@promotion_<($current)>'

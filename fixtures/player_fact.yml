@@ -1,0 +1,16 @@
+App\Domain\Player\PlayerFact:
+  player-fact_{1..25}:
+    player: '@player_<current()>'
+    club: '@club_*'
+    play_value: <randomNumber()>
+    number_of_rounds: <randomNumber()>
+    paid_value: <randomNumber()>
+    last_played: <dateTime()>
+
+  player-fact_{26..50}:
+    player: '@player_<current()>'
+    club: '@club_*'
+    play_value: <randomNumber()>
+    number_of_rounds: <randomNumber()>
+    paid_value: <randomNumber()>
+    last_played: <dateTime()>

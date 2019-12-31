@@ -1,0 +1,6 @@
+imports:
+  - { resource: infrastructure/root.yaml }
+  - { resource: infrastructure/promotion.yaml }
+  - { resource: infrastructure/shared.yaml }
+  - { resource: infrastructure/payment.yaml }
+  - { resource: infrastructure/elasticsearch.yaml }

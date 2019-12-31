@@ -1,0 +1,9 @@
+App\Domain\Shared\Role:
+  ca:
+    name: CA
+  sa:
+    name: SA
+  player:
+    name: PLAYER
+  partner:
+    name: PARTNER

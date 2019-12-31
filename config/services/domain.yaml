@@ -1,0 +1,4 @@
+imports:
+  - { resource: domain/root.yaml }
+  - { resource: domain/promotion.yaml }
+  - { resource: domain/accounting.yaml }

@@ -1,0 +1,33 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  App\Infrastructure\Shared\:
+    resource: '../../../src/Infrastructure/Shared/*'
+
+  App\Infrastructure\Shared\Serializer\Normalizer\JsonLd\CollectionNormalizer:
+    decorates: api_platform.hydra.normalizer.collection
+    arguments:
+      - '@App\Infrastructure\Shared\Serializer\Normalizer\JsonLd\CollectionNormalizer.inner'
+
+  _instanceof:
+    App\Infrastructure\Shared\Mailer\Payment\Strategy\Info\InfoStrategyInterface:
+      tags:
+        - { name: 'app.infrastructure.mailer.payment.info' }
+    App\Infrastructure\Shared\Mailer\Payment\Strategy\Item\ItemStrategyInterface:
+      tags:
+        - { name: 'app.infrastructure.mailer.payment.item' }
+    App\Infrastructure\Shared\Mailer\Payment\Strategy\Meta\MetaStrategyInterface:
+      tags:
+        - { name: 'app.infrastructure.mailer.payment.meta' }
+
+  App\Infrastructure\Shared\Mailer\Payment\Strategy\Info\InfoContext:
+    arguments:
+      - !tagged app.infrastructure.mailer.payment.info
+  App\Infrastructure\Shared\Mailer\Payment\Strategy\Item\ItemContext:
+    arguments:
+      - !tagged app.infrastructure.mailer.payment.item
+  App\Infrastructure\Shared\Mailer\Payment\Strategy\Meta\MetaContext:
+    arguments:
+      - !tagged app.infrastructure.mailer.payment.meta

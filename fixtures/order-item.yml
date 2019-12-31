@@ -1,0 +1,5 @@
+App\Domain\Order\Item\OrderItem:
+  order-item_{1..50}:
+    order: '@order_<current()>'
+    quantity: '1'
+    total: '@order_<current()>->total'

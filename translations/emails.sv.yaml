@@ -1,0 +1,14 @@
+receipt:
+  title: Kvitto
+  transaction_date: Transaktionsdatum
+  transaction_time: Tid för transaktion
+  transaction_amount: Transaktionsbelopp
+  customer: Kund
+  payment_method: Betalningsmetod
+  product: Produkt
+  vat_percentage: Moms %
+  net_sum: Netto
+  vat: Moms
+  total: Total
+  club: Klubb
+  membership: Medlemskap

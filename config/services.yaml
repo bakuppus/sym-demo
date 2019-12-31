@@ -1,0 +1,83 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+imports:
+  - { resource: services/domain.yaml }
+  - { resource: services/infrastructure.yaml }
+  - { resource: services/application.yaml }
+
+parameters:
+  payment_host: '%env(PAYMENT_HOST)%'
+  base_url: '%env(APP_BASE_URL)%'
+  braintree_sandbox: '%env(bool:BRAINTREE_SANDBOX)%'
+  limit_overall_reply_time: '%env(int:ELASTICA_LIMIT_OVERALL_REPLY_TIME)%'
+
+services:
+  # default configuration for services in *this* file
+  _defaults:
+    #todo: causing a bug
+    #    bind:
+    #      $defaultDirection: '%api_platform.collection.order%'
+    autowire: true      # Automatically injects dependencies in your services.
+    autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+  _instanceof:
+    # services whose classes are instances of CustomInterface will be tagged automatically
+    App\Infrastructure\Shared\Elasticsearch\DataProvider\Extension\QueryExtensionInterface:
+      tags: ['api_platform.elastica.query_extension.collection']
+
+  # makes classes in src/ available to be used as services
+  # this creates a service per class whose id is the fully-qualified class name
+  App\UI\:
+    resource: '../src/UI/*'
+
+  # controllers are imported separately to make sure services can be injected
+  # as action arguments even if you don't extend any base controller class
+  #  App\Controller\:
+  #    resource: '../src/Controller'
+  #    tags: ['controller.service_arguments']
+
+  # add more service definitions when explicit configuration is needed
+  # please note that last definitions always *replace* previous ones
+
+  Illuminate\Support\Str: ~
+
+  App\Infrastructure\Shared\Elasticsearch\DataProvider\ElasticaCollectionDataProvider:
+    arguments:
+      - '@fos_elastica.repository_manager'
+      - '@api_platform.metadata.resource.metadata_factory'
+      - '@api_platform.pagination'
+      - !tagged api_platform.elastica.query_extension.collection
+      - '@event_dispatcher'
+    tags:
+      - { name: 'api_platform.collection_data_provider', priority: 10 }
+
+  App\Infrastructure\Shared\Elasticsearch\DataProvider\ElasticaItemDataProvider:
+    tags:
+      - { name: 'api_platform.item_data_provider', priority: 10 }
+
+  App\Infrastructure\Shared\Elasticsearch\DataProvider\Extension\SortFilterExtension:
+    arguments:
+      - '@api_platform.elasticsearch.metadata.resource.metadata_factory.operation'
+      - '@api_platform.filter_locator'
+    tags:
+      - { name: 'api_platform.elastica.query_extension.collection' }
+
+  App\Infrastructure\Shared\Elasticsearch\DataProvider\Extension\DefaultSortExtension:
+    arguments:
+      - '@api_platform.elasticsearch.metadata.resource.metadata_factory.operation'
+      - '@api_platform.elasticsearch.identifier_extractor'
+      - '@api_platform.doctrine.orm.metadata.property.metadata_factory.inner'
+      - '@api_platform.resource_class_resolver'
+      - '@api_platform.elasticsearch.name_converter.inner_fields'
+      - '%api_platform.collection.order%'
+    tags:
+      - { name: api_platform.elastica.query_extension.collection, priority: -100 }
+
+  App\Application\Player\Elasticsearch\PlayerModelToElasticaTransformer:
+    calls:
+      - [setPropertyAccessor, ['@fos_elastica.property_accessor']]
+
+  App\Infrastructure\Shared\Generator\Barcode\BarcodeGenerator:

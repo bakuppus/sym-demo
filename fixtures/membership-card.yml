@@ -1,0 +1,20 @@
+App\Domain\Promotion\MembershipCard:
+  membership-card_1:
+    player: '@player_1'
+    membership: '@membership_22'
+    order: '@order_membership_1'
+    club: '@membership_22->club'
+    state: 'new'
+    starts_at: <(new DateTime('2020-01-01 00:00:00'))>
+    expires_at: <(new DateTime('2020-12-31 23:59:59'))>
+    durationType: 'annual_duration'
+    calendarYear: <(new DateTime('2020-01-01'))>
+
+  membership-card_{2..50}:
+    player: '@player_<current()>'
+    membership: '@membership_1'
+    club: '@membership_*->club'
+    state: 'new'
+    starts_at: <(new DateTime('2019-12-01 00:00:00'))>
+    expires_at: <(new DateTime('2020-11-30 23:59:59'))>
+    durationType: '12_month'

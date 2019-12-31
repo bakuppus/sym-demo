@@ -1,0 +1,411 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet" type="text/css">
+    <title>{% trans from 'emails' %} receipt.title {% endtrans %}</title>
+    <style>
+        /* A simple css reset */
+        body,
+        table,
+        thead,
+        tbody,
+        tr,
+        td,
+        img {
+            padding: 0;
+            margin: 0;
+            border: none;
+            border-spacing: 0px;
+            border-collapse: collapse;
+        }
+
+        /* Add some padding for small screens */
+        .wrapper {
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 52px;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin: 0;
+            padding: 0;
+            color: #B5B5B5;
+            line-height: 1.6;
+            font-family: Roboto, sans-serif;
+        }
+
+        p,
+        a,
+        li {
+            font-family: Roboto, sans-serif;
+            color: #B5B5B5;
+            line-height: 1.6;
+            font-size: 12px;
+            margin: 0;
+            padding: 0;
+        }
+
+        img {
+            display: block;
+            padding-bottom: 10px;
+        }
+
+        .column-grey {
+            background: #F1F1F1;
+        }
+
+        .value {
+            color: #292929;
+            font-size: 14px;
+            word-break: break-word;
+        }
+
+        .total {
+            color: #000000 !important;
+            font-weight: bold;
+        }
+
+        .margin-auto {
+            margin: 0 auto;
+        }
+
+        .key-values {
+            margin: 20px 5px;
+        }
+
+        .key-values-list {
+            margin: 20px auto;
+        }
+
+        .section-full {
+            margin-top: 4px;
+        }
+
+        .footer {
+            font-weight: bold;
+        }
+
+        @media only screen and (max-width: 620px) {
+
+            .wrapper .section {
+                width: 100%;
+            }
+
+            .wrapper .column {
+                width: 100%;
+                display: block;
+            }
+
+            .value {
+                font-size: 12px;
+            }
+
+            p {
+                font-size: 10px;
+            }
+
+            .section-full {
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<table width="100%">
+    <tbody>
+    <tr>
+        <td class="wrapper" width="600" align="center">
+
+            <!-- Two columns -->
+            <table class="section" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td class="column" width="298" valign="top">
+                        <img src="https://ss360.s3.eu-north-1.amazonaws.com/emails/sweetspot-logo.png"
+                             width="180"/>
+                    </td>
+                    <td class="column" width="4" valign="top">
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td> &nbsp;</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td class="column" width="298" valign="top" align="right">
+                        <h2>{% trans from 'emails' %} receipt.title {% endtrans %}</h2>
+                    </td>
+                </tr>
+            </table>
+
+
+            <!-- Two columns -->
+            <table class="section" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td class="column column-grey" width="298" valign="top">
+                        <table class="margin-auto">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <!-- Transaction info -->
+                                    <table width="288" class="key-values" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <p><b>{% trans from 'emails' %} receipt.transaction_date {% endtrans %}</b></p>
+                                            </td>
+                                            <td width="50">
+                                            </td>
+                                            <td align="right">
+                                                <p class="value">{{ receipt.getInfo.getTransactionDate.format('Y m d') }}</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p><b>{% trans from 'emails' %} receipt.transaction_time {% endtrans %}</b></p>
+                                            </td>
+                                            <td width="50">
+
+                                            </td>
+                                            <td align="right">
+                                                <p class="value">{{ receipt.getInfo.getTransactionDate.format('H:i') }}</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p><b>{% trans from 'emails' %} receipt.transaction_amount {% endtrans %}</b></p>
+                                            </td>
+                                            <td width="50">
+
+                                            </td>
+                                            <td align="right">
+                                                <p class="value total">{{ receipt.getInfo.getTransactionAmount }}</p>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td class="column" width="4" valign="top">
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td> &nbsp;</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                    <td class="column column-grey" width="298" valign="top">
+                        <table class="margin-auto">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <!-- Transaction info -->
+                                    <table width="288" class="key-values" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <p><b>{% trans from 'emails' %} receipt.customer {% endtrans %}</b></p>
+                                            </td>
+                                            <td width="50">
+                                            </td>
+                                            <td align="right">
+                                                <p class="value">{{ receipt.getInfo.getCustomerName }}</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p><b></b></p>
+                                            </td>
+                                            <td width="50">
+                                            </td>
+                                            <td align="right">
+                                                <p class="value">{{ receipt.getInfo.getCustomerEmail }}</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p><b>{% trans from 'emails' %} receipt.payment_method {% endtrans %}</b></p>
+                                            </td>
+                                            <td width="50">
+
+                                            </td>
+                                            <td align="right">
+                                                <p class="value">{{ receipt.getInfo.getCardBrand }}
+                                                    ..{{ receipt.getInfo.getCardLastFour }}</p>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+
+            <table class="section section-full" cellpadding="0" cellspacing="0" width="600">
+                <tr>
+                    <td class="column column-grey">
+                        <table width="600" class="section margin-auto">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <table width="600" class="section key-values-list">
+                                        <tbody>
+                                        <tr>
+                                            {% for meta in receipt.getMeta %}
+                                                <th>
+                                                    <p>{{ meta.key }}</p>
+                                                </th>
+                                            {% endfor %}
+                                        </tr>
+                                        <tr>
+                                            {% for meta in receipt.getMeta %}
+                                                <td width="150" align="middle">
+                                                    <p class="value">{{ meta.value }}</p>
+                                                </td>
+                                            {% endfor %}
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+            <table class="section section-full" cellpadding="0" cellspacing="0" width="600">
+                <tr>
+                    <td class="column column-grey">
+                        <table width="600" class="section margin-auto">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <table width="580" class="section key-values-list">
+                                        <tbody>
+                                        <tr>
+                                            <th>
+                                                <p>{% trans from 'emails' %} receipt.product {% endtrans %}</p>
+                                            </th>
+                                            <th>
+                                                <p>{% trans from 'emails' %} receipt.vat_percentage {% endtrans %}</p>
+                                            </th>
+                                            <th>
+                                                <p>{% trans from 'emails' %} receipt.net_sum {% endtrans %}</p>
+                                            </th>
+                                            <th>
+                                                <p>{% trans from 'emails' %} receipt.vat {% endtrans %}</p>
+                                            </th>
+                                            <th>
+                                                <p>{% trans from 'emails' %} receipt.total {% endtrans %}</p>
+                                            </th>
+                                        </tr>
+                                        {% for item in receipt.getItems %}
+                                            <tr>
+                                                <td width="116" align="middle">
+                                                    <p class="value">{{ item.getProduct }}</p>
+                                                </td>
+                                                <td width="116" align="middle">
+                                                    <p class="value">{{ item.getVatPercentage }}%</p>
+                                                </td>
+                                                <td width="116" align="middle">
+                                                    <p class="value">{{ item.getNetSumString }}</p>
+                                                </td>
+                                                <td width="116" align="middle">
+                                                    <p class="value">{{ item.getVatString }}</p>
+                                                </td>
+                                                <td width="116" align="middle">
+                                                    <p class="value">{{ item.getTotalString }}</p>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+            <table class="section section-full" cellpadding="0" cellspacing="0" width="600">
+                <tr>
+                    <td class="column column-grey">
+                        <table width="600" class="section margin-auto">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <table width="580" class="section key-values-list">
+                                        <tbody>
+                                        <tr>
+                                            <th width="116" align="middle">
+                                                <p>{% trans from 'emails' %} receipt.total {% endtrans %}</p>
+                                            </th>
+                                            <td width="116" align="middle">
+                                                <p class="value"></p>
+                                            </td>
+                                            <td width="116" align="middle">
+                                                <p class="value">{{ receipt.getTotal.getNetSumString }}</p>
+                                            </td>
+                                            <td width="116" align="middle">
+                                                <p class="value">{{ receipt.getTotal.getVatString }}</p>
+                                            </td>
+                                            <td width="116" align="middle">
+                                                <p class="value total">{{ receipt.getTotal.getTotalString }}</p>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+
+            <!-- Two columns -->
+            <table class="section footer section-full">
+                <tr>
+                    <td class="column" width="150" valign="top" align="left">
+                        <p>Sweetspot AB</p>
+                        <p>Mälarvarvsbacken 8</p>
+                        <p>177 33 Stockholm</p>
+                        <p>Sweden</p>
+                        <br>
+                        <p>info@sweetspot.io</p>
+                        <p>www.sweetspot.io</p>
+                    </td>
+                    <td class="column" width="450" valign="top" align="left">
+                        <p>Org.nr: 559095-3583 </p>
+                        <p>Godkänd för F-skatt</p>
+                    </td>
+                </tr>
+            </table>
+
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+
+</html>

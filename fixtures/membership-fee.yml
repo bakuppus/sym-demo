@@ -1,0 +1,6 @@
+App\Domain\Promotion\MembershipFee:
+  membership-fee_{1..30}:
+    membership: '@membership_<current()>'
+    feeUnit: '@feeUnit_<numberBetween(1, 4)>'
+    vat: <numberBetween(1, 100)>
+    price: <numberBetween(1000, 2000)>

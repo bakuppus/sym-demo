@@ -1,0 +1,6 @@
+App\Domain\Order\Item\OrderItemMembershipCard:
+  order-item-membership-card_1:
+    order: '@order_membership_1'
+    membershipCard: '@membership-card_1'
+    quantity: '1'
+    total: '@order_membership_1->total'

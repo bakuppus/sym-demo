@@ -1,0 +1,4 @@
+App\Domain\Player\PlayRight:
+  play-right_{1..60}:
+    player: '@player_1'
+    golfClub: '@club_<current()>'

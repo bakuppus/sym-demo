@@ -1,0 +1,10 @@
+App\Domain\Admin\SuperAdmin:
+  super_admin:
+    firstName: Admin
+    lastName: Super
+    language: en
+    email: sa@ss.com
+    password: '\$2y\$10\$.8wDofBbSF8aI8kdtTEA4OfKZomUw.9iwi4sUCmzFMERhQCtijJhu'
+    roles:
+      - '@sa'
+      - '@ca'

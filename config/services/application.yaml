@@ -1,0 +1,7 @@
+imports:
+  - { resource: application/command.yaml }
+  - { resource: application/payment.yaml }
+  - { resource: application/event.yaml }
+  - { resource: application/assigner.yaml }
+  - { resource: application/query.yaml }
+  - { resource: application/messenger.yaml }

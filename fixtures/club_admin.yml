@@ -1,0 +1,11 @@
+App\Domain\Admin\Admin:
+  admin:
+    firstName: Club
+    lastName: Admin
+    language: en
+    email: ca@ss.com
+    password: '\$2y\$10\$VtMla6PQ5BNwGFKjnYm2JeAFeB1LyWTbHoDLE5wSehY.YpF7Rt1JW'
+    clubs:
+      - '@club_*'
+    roles:
+      - '@ca'

@@ -1,0 +1,5 @@
+App\Domain\Payment\GatewayConfig:
+  gateway_config_1:
+    gateway_name: 'offline'
+    factory_name: 'offline'
+    config: []

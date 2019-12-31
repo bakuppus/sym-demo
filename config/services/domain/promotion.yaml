@@ -1,0 +1,34 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  App\Domain\Promotion\:
+    resource: '../../../src/Domain/Promotion/*'
+
+  _instanceof:
+    App\Domain\Promotion\Action\PromotionActionCommandInterface:
+      tags:
+        - { name: 'app.promotion.action.command' }
+
+    App\Domain\Promotion\Checker\Eligibility\PromotionEligibilityCheckerInterface:
+      tags:
+        - { name: 'app.promotion.eligibility_checker' }
+
+    App\Domain\Promotion\Checker\Rule\RuleCheckerInterface:
+      tags:
+        - { name: 'app.promotion.rule_checker' }
+
+  App\Domain\Promotion\Applicator\PromotionApplicator:
+    arguments:
+      - !tagged app.promotion.action.command
+
+  App\Domain\Promotion\Checker\CompositePromotionChecker:
+    arguments:
+      - !tagged app.promotion.eligibility_checker
+
+  App\Domain\Promotion\Checker\Eligibility\PromotionRulesEligibilityChecker:
+    arguments:
+      - !tagged app.promotion.rule_checker
+    tags:
+      - { name: app.promotion.eligibility_checker }

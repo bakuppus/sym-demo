@@ -1,0 +1,14 @@
+receipt:
+  title: Receipt
+  transaction_date: Transaction date
+  transaction_time: Transaction time
+  transaction_amount: Transaction amount
+  customer: Customer
+  payment_method: Payment method
+  product: Product
+  vat_percentage: VAT %
+  net_sum: Net sum
+  vat: VAT
+  total: Total
+  club: Club
+  membership: Membership

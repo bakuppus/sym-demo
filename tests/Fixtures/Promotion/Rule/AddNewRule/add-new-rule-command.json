@@ -1,0 +1,4 @@
+{
+  "type": "days_in_week_checker",
+  "configuration": ["Monday", "Friday"]
+}

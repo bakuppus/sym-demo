@@ -1,0 +1,38 @@
+default:
+  suites:
+    default:
+      contexts:
+        - FeatureContext:
+            kernel: '@kernel'
+        - DoctrineContext:
+            doctrine: '@doctrine'
+        - FixtureContext:
+            loader: '@fidry_alice_data_fixtures.doctrine.purger_loader'
+        - Behat\MinkExtension\Context\MinkContext
+        - JsonContext
+        - behatch:context:rest
+
+  extensions:
+    Behat\Symfony2Extension:
+      kernel:
+        bootstrap: features/bootstrap/bootstrap.php
+        class: App\Infrastructure\Kernel
+    Behat\MinkExtension:
+      base_url: 'http://ss.api-platform.valet/' #todo: investigate why it's not work with %env(APP_BASE_URL)%
+      sessions:
+        default:
+          symfony2: ~
+    Behatch\Extension: ~
+    Bex\Behat\SkipTestsExtension: ~
+    LeanPHP\Behat\CodeCoverage\Extension:
+      drivers:
+        - local
+      filter:
+        whitelist:
+          include:
+            directories:
+              'src': ~
+      report:
+        format: php
+        options:
+          target: etc/build/coverage/behat.cov

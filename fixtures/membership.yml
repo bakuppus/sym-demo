@@ -1,0 +1,80 @@
+parameters:
+  durationOptions:
+    - ['annual_duration', '12_month']
+    - ['annual_duration']
+    - ['12_month']
+
+App\Domain\Promotion\Membership:
+  membership (template):
+    name (unique): <company()>
+    durationOptions: <randomElement($durationOptions)>
+    isActive: <boolean(50)>
+    isGitSync: <boolean(50)>
+    isHidden: <boolean(50)>
+    playRightOnly: <boolean(50)>
+    state: <randomElement(['draft', 'published', 'outdated'])>
+  membership_1 (extends membership):
+    playRightOnly: false
+    state: 'draft'
+    club: '@club_*'
+  membership_2 (extends membership):
+    state: 'draft'
+    durationOptions: ['12_month']
+    isActive: true
+    club: '@club_*'
+  membership_{3..10} (extends membership):
+    state: 'draft'
+    club: '@club_*'
+  membership_{11..20} (extends membership):
+    state: 'outdated'
+    club: '@club_*'
+  membership_21 (extends membership):
+    state: 'published'
+    durationOptions: ['annual_duration', '12_month']
+    isActive: true
+    club: '@club_*'
+  membership_22 (extends membership):
+    state: 'published'
+    durationOptions: ['12_month']
+    isActive: true
+    club: '@club_22'
+  membership_23 (extends membership):
+    state: 'published'
+    durationOptions: ['annual_duration']
+    isActive: true
+    club: '@club_*'
+  membership_24 (extends membership):
+    state: 'published'
+    durationOptions: ['annual_duration', '12_month']
+    isActive: false
+    club: '@club_*'
+  membership_25 (extends membership):
+    state: 'published'
+    durationOptions: ['12_month']
+    isActive: true
+    club: '@club_20'
+  membership_26 (extends membership):
+    state: 'published'
+    durationOptions: ['annual_duration']
+    isActive: true
+    club: '@club_20'
+  membership_{27..31} (extends membership):
+    state: 'published'
+    club: '@club_*'
+  #Memebrship without fees (zero price)
+  membership_32 (extends membership):
+    state: 'published'
+    durationOptions: ['12_month']
+    isActive: true
+    club: '@club_20'
+  #Memebrship without fees (zero price)
+  membership_33 (extends membership):
+    state: 'published'
+    durationOptions: ['annual_duration']
+    isActive: true
+    club: '@club_20'
+  membership_{34..100} (extends membership):
+    state: 'published'
+    club: '@club_*'
+  membership_pagination_{1..100} (extends membership):
+    club: '@club_with_name'

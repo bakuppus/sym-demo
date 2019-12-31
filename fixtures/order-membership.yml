@@ -1,0 +1,14 @@
+App\Domain\Order\OrderMembership:
+  order_membership_1:
+    membership: '@membership_22'
+    club: '@club_22'
+    customer: '@player_1'
+    number (unique): "<ean13()>"
+    notes: <text()>
+    state: 'new'
+    total: 100000
+    itemsTotal: 100000
+    currency_code: <currencyCode()>
+    locale_code: <locale()>
+    payment_state: 'awaiting_payment'
+    token: <bothify('#?#?#?#?#')>

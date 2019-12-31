@@ -1,0 +1,5 @@
+App\Domain\Payment\PaymentMethod:
+  payment_method_1:
+    gateway_config: '@gateway_config_1'
+    code: 'on_site'
+    is_enabled: 1

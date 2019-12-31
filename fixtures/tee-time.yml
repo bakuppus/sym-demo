@@ -1,0 +1,30 @@
+App\Domain\TeeTime\TeeTime:
+  tee-time_1:
+    course: '@course_2'
+    from: <dateTime()>
+    to: <dateTime()>
+    interval: 10
+    status: <randomElement(['open', 'members_only'])>
+    is_golf_id_required: <boolean(50)>
+    available_slots: 5
+    max_slots: 5
+
+  tee-time_2:
+    course: '@course_3'
+    from: <dateTime()>
+    to: <dateTime()>
+    interval: 10
+    status: <randomElement(['open', 'members_only'])>
+    is_golf_id_required: <boolean(50)>
+    available_slots: 3
+    max_slots: 4
+
+  tee-time_{3..100}:
+    course: '@course_*'
+    from: <dateTime()>
+    to: <dateTime()>
+    interval: 10
+    status: <randomElement(['open', 'members_only'])>
+    is_golf_id_required: <boolean(50)>
+    available_slots: 4
+    max_slots: 4

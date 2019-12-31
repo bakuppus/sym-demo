@@ -1,0 +1,13 @@
+parameters:
+# ... some parameters
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  App\Infrastructure\Elasticsearch\:
+    resource: '../../../src/Infrastructure/Elasticsearch/*'
+
+  FOS\ElasticaBundle\Manager\RepositoryManager: ~
+  ApiPlatform\Core\Bridge\Elasticsearch\Serializer\NameConverter\InnerFieldsNameConverter: ~

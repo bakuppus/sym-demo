@@ -1,0 +1,7 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  App\Application\Event\:
+    resource: '../../../src/Application/Event/*'

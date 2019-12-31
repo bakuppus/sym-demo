@@ -1,0 +1,6 @@
+{
+  "type": "booking_discount_percentage",
+  "configuration": {
+     "percentage": 10
+  }
+}

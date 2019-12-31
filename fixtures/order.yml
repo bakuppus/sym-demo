@@ -1,0 +1,14 @@
+App\Domain\Order\Order:
+  order_{1..50}:
+    club: '@club_*'
+    course: '@course_*'
+    customer: '@player_*'
+    number (unique): "<ean13()>"
+    notes: <text()>
+    state: <randomElement(['new', 'canceled', 'fulfilled'])>
+    total: <numberBetween(100, 100000)>
+    itemsTotal: '@order_<current()>->total'
+    currency_code: <currencyCode()>
+    locale_code: <locale()>
+    payment_state: <randomElement(['new', 'processing', 'failed', 'completed', 'canceled', 'refunded'])>
+    token: <bothify('#?#?#?#?#')>

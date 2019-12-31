@@ -1,0 +1,28 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  App\Infrastructure\Promotion\:
+    resource: '../../../src/Infrastructure/Promotion/*'
+
+  _instanceof:
+    Doctrine\Common\EventSubscriber:
+      tags:
+        - { name: 'doctrine.event_subscriber' }
+
+    App\Domain\Promotion\Checker\Rule\RuleCheckerInterface:
+      tags:
+        - { name: 'app.promotion.rule_checker' }
+
+    App\Domain\Promotion\Action\PromotionActionCommandInterface:
+      tags:
+        - { name: 'app.promotion.action.command' }
+
+  App\Infrastructure\Promotion\Validator\IsValidRuleInputValidator:
+    arguments:
+      - !tagged app.promotion.rule_checker
+
+  App\Infrastructure\Promotion\Validator\IsValidActionInputValidator:
+    arguments:
+      - !tagged app.promotion.action.command

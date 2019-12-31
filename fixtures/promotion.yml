@@ -1,0 +1,19 @@
+App\Domain\Promotion\Promotion:
+  promotion_to_delete:
+    name: 'delete me'
+    club: '@club_1'
+  #draft
+  promotion_{1..20}:
+    name: <company()>
+    description: <text()>
+    membership: '@membership_<numberBetween(1, 10)>'
+  #outeded
+  promotion_{21..40}:
+    name: <company()>
+    description: <text()>
+    membership: '@membership_<numberBetween(11, 20)>'
+  #pablished
+  promotion_{41..60}:
+    name: <company()>
+    description: <text()>
+    membership: '@membership_<numberBetween(21, 100)>'
